@@ -20,7 +20,7 @@ class CBTSkill(MycroftSkill):
         self._positive_words = self._lines_from_path(path_to_positive)
 
         path_to_reasons = join(path, 'vocab', self.lang, 'Reasons.voc')
-        self._reasons = self._lines_from_path(path_to_positive)
+        self._reasons = self._lines_from_path(path_to_reasons)
 
     def _lines_from_path(self, path):
         with open(path, 'r') as file:
