@@ -50,7 +50,7 @@ class CBTSkill(MycroftSkill):
 
         if reason in self._reasons:
             feel = self.get_response("how.do.you.feel")
-            affirm = self.get_response("I understand feeling that way. Do you want to learn more about your anger?")
+            affirm = self.get_response("I understand feeling angry can be overwhelming. Wanna learn a trick?")
 
         if affirm == "yeah":
             self.speak_dialog("anger.exercise")        
