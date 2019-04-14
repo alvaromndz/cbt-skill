@@ -39,6 +39,7 @@ class CBTSkill(MycroftSkill):
         self.speak_dialog("hello")
         response = self.get_response("how.are.you")
         reason = ""
+        affirm = ""
 
         if response in self._negative_words:
             self.mood = False
@@ -49,21 +50,15 @@ class CBTSkill(MycroftSkill):
 
         if reason in self._reasons:
             feel = self.get_response("how.do.you.feel")
-            self.speak("I understand feeling that way. Do you want to learn more about your anger?")
+            affirm = self.get_response("I understand feeling that way. Do you want to learn more about your anger?")
+
+        if affirm == "yeah":
+            self.speak_dialog("anger.exercise")        
 
     @intent_handler(IntentBuilder("").require("Negative"))
     def handle_negative_intent(self, message):
         self.mood = False
         self.speak_dialog("im.sorry", data={"followup": "Can you tell me what made your day tough?"})
-
-    # The "stop" method defines what Mycroft does when told to stop during
-    # the skill's execution. In this case, since the skill's functionality
-    # is extremely simple, there is no need to override it.  If you DO
-    # need to implement stop, you should return True to indicate you handled
-    # it.
-    #
-    # def stop(self):
-    #    return False
 
 # The "create_skill()" method is used to create an instance of the skill.
 # Note that it's outside the class itself.
