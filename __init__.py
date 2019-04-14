@@ -19,6 +19,9 @@ class CBTSkill(MycroftSkill):
         path_to_positive = join(path, 'vocab', self.lang, 'Positive.voc')
         self._positive_words = self._lines_from_path(path_to_positive)
 
+        path_to_reasons = join(path, 'vocab', self.lang, 'Reasons.voc')
+        self._reasons = self._lines_from_path(path_to_positive)
+
     def _lines_from_path(self, path):
         with open(path, 'r') as file:
             lines = [line.strip().lower() for line in file]
@@ -40,7 +43,7 @@ class CBTSkill(MycroftSkill):
             self.mood = False
             reason = self.get_response("im.sorry", data={"followup": "Can you tell me what made your day tough?"})
 
-        if reason in self.reasons:
+        if reason in self._reasons:
             feel = self.get_response("how.do.you.feel")
             self.speak("I understand feeling that way. Do you want to learn more about your anger?")
 
