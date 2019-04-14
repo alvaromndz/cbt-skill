@@ -42,6 +42,9 @@ class CBTSkill(MycroftSkill):
         if response in self._negative_words:
             self.mood = False
             reason = self.get_response("im.sorry", data={"followup": "Can you tell me what made your day tough?"})
+        else:
+            self.speak("Really?")
+            return
 
         if reason in self._reasons:
             feel = self.get_response("how.do.you.feel")
